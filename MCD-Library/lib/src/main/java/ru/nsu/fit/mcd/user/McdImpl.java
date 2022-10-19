@@ -3,6 +3,7 @@ package ru.nsu.fit.mcd.user;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.lang.reflect.GenericArrayType;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.*;
@@ -18,6 +19,7 @@ public class McdImpl implements Mcd {
     public String getObjectHash(Class initialClass) throws JsonProcessingException {
         var classesToProcess = new LinkedList<Class>();
         classesToProcess.add(initialClass);
+        var types = new LinkedList<Type>();
 
         Map<String, List<AbstractMap.SimpleEntry<String, String>>> map = new HashMap<String, List<AbstractMap.SimpleEntry<String, String>>>();
 
@@ -40,15 +42,21 @@ public class McdImpl implements Mcd {
                 Type fieldGenericType = field.getGenericType();
 
                 if (fieldGenericType instanceof ParameterizedType) {
-                    ParameterizedType aType = (ParameterizedType) fieldGenericType;
-                    for (Type t : aType.getActualTypeArguments()) {
-                        if(t instanceof Class)
-                            classesToProcess.add((Class) t);
+                    ParameterizedType parameterizedFieldType = (ParameterizedType) fieldGenericType;
+                    for (Type actualArgumentType : parameterizedFieldType.getActualTypeArguments()) {
+                        if (actualArgumentType instanceof Class<?>)
+                            classesToProcess.add((Class<?>) actualArgumentType);
+                        else {
+                            var tClass = actualArgumentType.getClass();
+                            var tTypeName = actualArgumentType.getTypeName();
+                            if (actualArgumentType instanceof ParameterizedType)
+                                classesToProcess.add((Class) ((ParameterizedType) actualArgumentType).getRawType());
+                        }
                     }
-                    fieldsList.add(new AbstractMap.SimpleEntry<>(field.getName(), aType.getTypeName()));
-                    classesToProcess.add((Class) aType.getRawType());
+                    fieldsList.add(new AbstractMap.SimpleEntry<>(field.getName(), parameterizedFieldType.getTypeName()));
+                    classesToProcess.add((Class) parameterizedFieldType.getRawType());
                 } else {
-                    classesToProcess.add(field.getType());
+                    classesToProcess.add(fieldType);
                     fieldsList.add(new AbstractMap.SimpleEntry<>(field.getName(), field.getType().getName()));
                 }
             }
@@ -65,10 +73,5 @@ public class McdImpl implements Mcd {
         String resultJsonStr = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(map);
 
         return resultJsonStr;
-    }
-
-    private void Test()
-    {
-
     }
 }
