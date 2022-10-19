@@ -3,27 +3,34 @@
  */
 package ru.nsu.fit.mcd;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import org.junit.jupiter.api.Test;
-import ru.nsu.fit.mcd.user.McdImpl;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
+import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.stream.Collectors;
+import org.junit.jupiter.api.Test;
+import ru.nsu.fit.mcd.search.McdImpl;
 
 class LibraryTest {
-    @Test
-    void someLibraryMethodReturnsTrue() {
-        Library classUnderTest = new Library();
-        assertTrue(classUnderTest.someLibraryMethod(), "someLibraryMethod should return 'true'");
-    }
 
-    @Test
-    void testClassScan() throws JsonProcessingException {
-        McdImpl classUnderTest = new McdImpl();
-        assertDoesNotThrow(() -> classUnderTest.getObjectHash(TestClass1.class));
-        String result = classUnderTest.getObjectHash(TestClass1.class);
-        assertFalse(result.isEmpty());
-        System.out.println(result);
-    }
+  private final TestClass2<Long, Integer> testClass = new TestClass2<>();
+  private final TestClass1 testClass1 = new TestClass1();
+
+  @Test
+  void testClassScan() throws IOException {
+    McdImpl classUnderTest = new McdImpl();
+    assertDoesNotThrow(() -> classUnderTest.getObjectStructureReport(TestClass1.class));
+    String result = classUnderTest.getObjectStructureReport(TestClass1.class);
+    assertFalse(result.isEmpty());
+    System.out.println(result);
+  }
+
+  @Test
+  void test() {
+    Arrays.stream(LibraryTest.class.getDeclaredFields()).forEach(
+        field -> System.out.println(Arrays.stream(List.of(field.getGenericType()).toArray()).collect(Collectors.toList()))
+    );
+  }
 }
