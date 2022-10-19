@@ -3,12 +3,27 @@
  */
 package ru.nsu.fit.mcd;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.junit.jupiter.api.Test;
+import ru.nsu.fit.mcd.user.McdImpl;
+
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class LibraryTest {
-    @Test void someLibraryMethodReturnsTrue() {
+    @Test
+    void someLibraryMethodReturnsTrue() {
         Library classUnderTest = new Library();
         assertTrue(classUnderTest.someLibraryMethod(), "someLibraryMethod should return 'true'");
+    }
+
+    @Test
+    void testClassScan() throws JsonProcessingException {
+        McdImpl classUnderTest = new McdImpl();
+        assertDoesNotThrow(() -> classUnderTest.getObjectHash(TestClass1.class));
+        String result = classUnderTest.getObjectHash(TestClass1.class);
+        assertFalse(result.isEmpty());
+        System.out.println(result);
     }
 }
