@@ -74,4 +74,8 @@ class SearchCore {
         finalClassSet
     );
   }
+
+  public static List<ClassReport> getClassReport(Class<?> targetClass) {
+    return null;
+  }
 }
