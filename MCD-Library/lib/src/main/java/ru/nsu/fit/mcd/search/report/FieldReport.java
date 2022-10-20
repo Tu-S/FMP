@@ -1,6 +1,6 @@
 package ru.nsu.fit.mcd.search.report;
 
-public class FieldReport {
+public class FieldReport implements Comparable<FieldReport> {
 
   private String fieldName;
   private String fieldTypeName;
@@ -32,5 +32,10 @@ public class FieldReport {
         "fieldName='" + fieldName + '\'' +
         ", fieldTypeName='" + fieldTypeName + '\'' +
         '}';
+  }
+
+  @Override
+  public int compareTo(FieldReport o) {
+    return fieldName.compareTo(o.fieldName);
   }
 }

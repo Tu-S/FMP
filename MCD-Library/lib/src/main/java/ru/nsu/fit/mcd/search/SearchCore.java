@@ -4,16 +4,19 @@ import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Deque;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import ru.nsu.fit.mcd.search.report.ClassReport;
 import ru.nsu.fit.mcd.search.report.FieldReport;
 import ru.nsu.fit.mcd.utils.Pair;
 
-public class SearchCore {
+class SearchCore {
 
   private static Set<Type> getGenericTypeArgumentsFromType(Type checkedType) {
     if (checkedType instanceof ParameterizedType) {
@@ -41,7 +44,7 @@ public class SearchCore {
   private static Pair<FieldReport, Set<Class<?>>> getClassesAndReportFromField(Field field) {
     Type fieldType = field.getGenericType();
 
-    return new Pair<>(
+    return Pair.of(
         new FieldReport(field.getName(), fieldType.getTypeName()),
         getClassesFromGenericType(fieldType)
     );
@@ -51,5 +54,24 @@ public class SearchCore {
     return getClassesFromGenericType(targetClass.getGenericSuperclass());
   }
 
+  private static Pair<ClassReport, Set<Class<?>>> processClass(Class<?> targetClass) {
+    var fieldsReport = Arrays.stream(targetClass.getDeclaredFields())
+        .map(SearchCore::getClassesAndReportFromField);
 
+    var parentClasses = getClassesFromParent(targetClass);
+    var finalClassSet = Stream.concat(
+        fieldsReport
+            .map(Pair::getValue)
+            .flatMap(Collection::stream),
+        parentClasses.stream()
+    ).collect(Collectors.toSet());
+
+    return Pair.of(
+        new ClassReport(
+            targetClass.getName(),
+            fieldsReport.map(Pair::getKey).sorted().collect(Collectors.toList())
+        ),
+        finalClassSet
+    );
+  }
 }
