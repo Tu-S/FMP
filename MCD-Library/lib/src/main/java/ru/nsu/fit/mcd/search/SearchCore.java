@@ -23,9 +23,8 @@ public class SearchCore {
     return Set.of();
   }
 
-  private static Pair<FieldReport, Set<Class<?>>> getClassesAndReportFromField(Field field) {
-    Type fieldType = field.getGenericType();
-    Deque<Type> typesToProcess = new LinkedList<>(List.of(fieldType));
+  private static Set<Class<?>> getClassesFromGenericType(Type type) {
+    Deque<Type> typesToProcess = new LinkedList<>(List.of(type));
     Set<Class<?>> classes = new HashSet<>();
 
     while (!typesToProcess.isEmpty()) {
@@ -36,7 +35,21 @@ public class SearchCore {
       typesToProcess.addAll(getGenericTypeArgumentsFromType(currentType));
     }
 
-    return new Pair<>(new FieldReport(field.getName(), fieldType.getTypeName()), classes);
+    return classes;
   }
+
+  private static Pair<FieldReport, Set<Class<?>>> getClassesAndReportFromField(Field field) {
+    Type fieldType = field.getGenericType();
+
+    return new Pair<>(
+        new FieldReport(field.getName(), fieldType.getTypeName()),
+        getClassesFromGenericType(fieldType)
+    );
+  }
+
+  private static Set<Class<?>> getClassesFromParent(Class<?> targetClass) {
+    return getClassesFromGenericType(targetClass.getGenericSuperclass());
+  }
+
 
 }
