@@ -2,7 +2,7 @@ package ru.nsu.fit.mcd.search.report;
 
 import java.util.List;
 
-public class ClassReport {
+public class ClassReport implements Comparable<ClassReport> {
 
   private String className;
   private List<FieldReport> fields;
@@ -34,5 +34,10 @@ public class ClassReport {
         "className='" + className + '\'' +
         ", fields=" + fields +
         '}';
+  }
+
+  @Override
+  public int compareTo(ClassReport o) {
+    return className.compareTo(o.className);
   }
 }

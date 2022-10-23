@@ -6,9 +6,11 @@ import java.lang.reflect.Type;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Deque;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -76,6 +78,21 @@ class SearchCore {
   }
 
   public static List<ClassReport> getClassReport(Class<?> targetClass) {
-    return null;
+    Map<Class<?>, ClassReport> scannedClasses = new HashMap<>();
+    Deque<Class<?>> classesToScan = new LinkedList<>(List.of(targetClass));
+
+    while (!classesToScan.isEmpty()) {
+      var currentClass = classesToScan.pop();
+      var report = processClass(currentClass);
+
+      scannedClasses.put(currentClass, report.getKey());
+      classesToScan.addAll(
+          report.getValue().stream()
+              .filter(c -> !scannedClasses.containsKey(c))
+              .collect(Collectors.toSet())
+      );
+    }
+
+    return scannedClasses.values().stream().sorted().collect(Collectors.toList());
   }
 }
