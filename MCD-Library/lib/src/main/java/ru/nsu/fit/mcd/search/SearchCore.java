@@ -18,7 +18,7 @@ import ru.nsu.fit.mcd.search.report.ClassReport;
 import ru.nsu.fit.mcd.search.report.FieldReport;
 import ru.nsu.fit.mcd.utils.Pair;
 
-class SearchCore {
+public class SearchCore {
 
   private static Set<Type> getGenericTypeArgumentsFromType(Type checkedType) {
     if (checkedType instanceof ParameterizedType) {
@@ -60,10 +60,11 @@ class SearchCore {
     var fieldsReport = Arrays.stream(targetClass.getDeclaredFields())
         .map(SearchCore::getClassesAndReportFromField);
 
+    var fieldsReportPairs = fieldsReport.map(Pair::getValue);
+
     var parentClasses = getClassesFromParent(targetClass);
     var finalClassSet = Stream.concat(
-        fieldsReport
-            .map(Pair::getValue)
+        fieldsReportPairs
             .flatMap(Collection::stream),
         parentClasses.stream()
     ).collect(Collectors.toSet());
