@@ -10,8 +10,11 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import ru.nsu.fit.mcd.search.McdImpl;
+import ru.nsu.fit.mcd.search.SearchCore;
 
 class LibraryTest {
 
@@ -32,5 +35,13 @@ class LibraryTest {
     Arrays.stream(LibraryTest.class.getDeclaredFields()).forEach(
         field -> System.out.println(Arrays.stream(List.of(field.getGenericType()).toArray()).collect(Collectors.toList()))
     );
+  }
+
+  @Test
+  void testSearchCore() throws IOException {
+    var report = SearchCore.getClassReport(TestClass1.class);
+    ObjectMapper objectMapper = new ObjectMapper();
+
+    System.out.println(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(report));
   }
 }

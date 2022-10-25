@@ -12,13 +12,14 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import ru.nsu.fit.mcd.search.report.ClassReport;
 import ru.nsu.fit.mcd.search.report.FieldReport;
 import ru.nsu.fit.mcd.utils.Pair;
 
-class SearchCore {
+public class SearchCore {
 
   private static Set<Type> getGenericTypeArgumentsFromType(Type checkedType) {
     if (checkedType instanceof ParameterizedType) {
@@ -29,6 +30,10 @@ class SearchCore {
   }
 
   private static Set<Class<?>> getClassesFromGenericType(Type type) {
+    if (type == null) {
+      return Set.of();
+    }
+
     Deque<Type> typesToProcess = new LinkedList<>(List.of(type));
     Set<Class<?>> classes = new HashSet<>();
 
@@ -37,6 +42,9 @@ class SearchCore {
       if (currentType instanceof Class<?>) {
         classes.add((Class<?>) currentType);
       }
+      if (currentType instanceof ParameterizedType parameterizedType) {
+        classes.add((Class) parameterizedType.getRawType());
+      }
       typesToProcess.addAll(getGenericTypeArgumentsFromType(currentType));
     }
 
@@ -44,11 +52,11 @@ class SearchCore {
   }
 
   private static Pair<FieldReport, Set<Class<?>>> getClassesAndReportFromField(Field field) {
-    Type fieldType = field.getGenericType();
+    Type fieldGenericType = field.getGenericType();
 
     return Pair.of(
-        new FieldReport(field.getName(), fieldType.getTypeName()),
-        getClassesFromGenericType(fieldType)
+        new FieldReport(field.getName(), fieldGenericType.getTypeName()),
+        getClassesFromGenericType(fieldGenericType)
     );
   }
 
@@ -57,21 +65,25 @@ class SearchCore {
   }
 
   private static Pair<ClassReport, Set<Class<?>>> processClass(Class<?> targetClass) {
-    var fieldsReport = Arrays.stream(targetClass.getDeclaredFields())
+    Stream<Pair<FieldReport, Set<Class<?>>>> fieldsReport = Arrays.stream(
+            targetClass.getDeclaredFields())
         .map(SearchCore::getClassesAndReportFromField);
+
+    var fieldReportList = fieldsReport.toList();
+
+    var fieldsReportPairs = fieldReportList.stream().map(Pair::getValue);
 
     var parentClasses = getClassesFromParent(targetClass);
     var finalClassSet = Stream.concat(
-        fieldsReport
-            .map(Pair::getValue)
+        fieldsReportPairs
             .flatMap(Collection::stream),
         parentClasses.stream()
     ).collect(Collectors.toSet());
-
+    var sortedFieldsReport = fieldReportList.stream().map(Pair::getKey).sorted();
     return Pair.of(
         new ClassReport(
             targetClass.getName(),
-            fieldsReport.map(Pair::getKey).sorted().collect(Collectors.toList())
+            sortedFieldsReport.collect(Collectors.toList())
         ),
         finalClassSet
     );
@@ -93,6 +105,8 @@ class SearchCore {
       );
     }
 
-    return scannedClasses.values().stream().sorted().collect(Collectors.toList());
+    return scannedClasses.values().stream()
+        .filter(cl -> cl.getClassName().startsWith("ru.nsu.fit.mcd")).sorted()
+        .collect(Collectors.toList());
   }
 }
