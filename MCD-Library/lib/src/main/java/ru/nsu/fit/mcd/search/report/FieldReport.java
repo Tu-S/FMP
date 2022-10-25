@@ -28,9 +28,9 @@ public class FieldReport implements Comparable<FieldReport> {
 
   @Override
   public String toString() {
-    return "FieldReport{" +
-        "fieldName='" + fieldName + '\'' +
-        ", fieldTypeName='" + fieldTypeName + '\'' +
+    return "\nFieldReport{" +
+        "  fieldName='" + fieldName + "',\n" +
+        "  fieldTypeName='" + fieldTypeName + "'\n" +
         '}';
   }
 

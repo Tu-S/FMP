@@ -1,9 +1,9 @@
 package ru.nsu.fit.mcd;
 
 public class TestClass2<K, V> {
-    public int cIntFieldInClass2;
+    private int cIntFieldInClass2;
 
-    public K bKTypeField;
+    private K bKTypeField;
 
-    public V aVTypeField;
+    private V aVTypeField;
 }

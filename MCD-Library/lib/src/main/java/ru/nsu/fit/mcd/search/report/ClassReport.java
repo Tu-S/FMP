@@ -30,9 +30,9 @@ public class ClassReport implements Comparable<ClassReport> {
 
   @Override
   public String toString() {
-    return "ClassReport{" +
-        "className='" + className + '\'' +
-        ", fields=" + fields +
+    return "\nClassReport{\n" +
+        "  className='" + className + "',\n" +
+        "  fields=" + fields + "'\n" +
         '}';
   }
 

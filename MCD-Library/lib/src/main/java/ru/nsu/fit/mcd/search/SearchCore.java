@@ -12,28 +12,28 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.function.Supplier;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import ru.nsu.fit.mcd.search.report.ClassReport;
 import ru.nsu.fit.mcd.search.report.FieldReport;
 import ru.nsu.fit.mcd.utils.Pair;
 
-public class SearchCore {
+class SearchCore {
 
-  private static Set<Type> getGenericTypeArgumentsFromType(Type checkedType) {
-    if (checkedType instanceof ParameterizedType) {
-      return Arrays.stream(((ParameterizedType) checkedType).getActualTypeArguments())
+  private static final Set<String> CLASS_PACKAGE_BLACKLIST = Set.of(
+      "java."
+  );
+
+  private static Set<Type> getGenericTypeArgumentsFromType(Type targetType) {
+    if (targetType instanceof ParameterizedType) {
+      return Arrays.stream(((ParameterizedType) targetType).getActualTypeArguments())
           .collect(Collectors.toSet());
     }
     return Set.of();
   }
 
   private static Set<Class<?>> getClassesFromGenericType(Type type) {
-    if (type == null) {
-      return Set.of();
-    }
-
     Deque<Type> typesToProcess = new LinkedList<>(List.of(type));
     Set<Class<?>> classes = new HashSet<>();
 
@@ -41,9 +41,8 @@ public class SearchCore {
       Type currentType = typesToProcess.pop();
       if (currentType instanceof Class<?>) {
         classes.add((Class<?>) currentType);
-      }
-      if (currentType instanceof ParameterizedType parameterizedType) {
-        classes.add((Class) parameterizedType.getRawType());
+      } else if (currentType instanceof ParameterizedType) {
+        classes.add((Class<?>) ((ParameterizedType) currentType).getRawType());
       }
       typesToProcess.addAll(getGenericTypeArgumentsFromType(currentType));
     }
@@ -52,38 +51,37 @@ public class SearchCore {
   }
 
   private static Pair<FieldReport, Set<Class<?>>> getClassesAndReportFromField(Field field) {
-    Type fieldGenericType = field.getGenericType();
+    Type fieldType = field.getGenericType();
 
     return Pair.of(
-        new FieldReport(field.getName(), fieldGenericType.getTypeName()),
-        getClassesFromGenericType(fieldGenericType)
+        new FieldReport(field.getName(), fieldType.getTypeName()),
+        getClassesFromGenericType(fieldType)
     );
   }
 
   private static Set<Class<?>> getClassesFromParent(Class<?> targetClass) {
+    if (targetClass.isPrimitive() || targetClass.isArray()) {
+      return Set.of();
+    }
     return getClassesFromGenericType(targetClass.getGenericSuperclass());
   }
 
   private static Pair<ClassReport, Set<Class<?>>> processClass(Class<?> targetClass) {
-    Stream<Pair<FieldReport, Set<Class<?>>>> fieldsReport = Arrays.stream(
-            targetClass.getDeclaredFields())
-        .map(SearchCore::getClassesAndReportFromField);
-
-    var fieldReportList = fieldsReport.toList();
-
-    var fieldsReportPairs = fieldReportList.stream().map(Pair::getValue);
+    var fieldsReport = Arrays.stream(targetClass.getDeclaredFields())
+        .map(SearchCore::getClassesAndReportFromField).collect(Collectors.toList());
 
     var parentClasses = getClassesFromParent(targetClass);
     var finalClassSet = Stream.concat(
-        fieldsReportPairs
+        fieldsReport.stream()
+            .map(Pair::getValue)
             .flatMap(Collection::stream),
         parentClasses.stream()
     ).collect(Collectors.toSet());
-    var sortedFieldsReport = fieldReportList.stream().map(Pair::getKey).sorted();
+
     return Pair.of(
         new ClassReport(
             targetClass.getName(),
-            sortedFieldsReport.collect(Collectors.toList())
+            fieldsReport.stream().map(Pair::getKey).sorted().collect(Collectors.toList())
         ),
         finalClassSet
     );
@@ -100,13 +98,16 @@ public class SearchCore {
       scannedClasses.put(currentClass, report.getKey());
       classesToScan.addAll(
           report.getValue().stream()
-              .filter(c -> !scannedClasses.containsKey(c))
+              .filter(Predicate.not(scannedClasses::containsKey))
+              .filter(Predicate.not(Class::isArray))
+              .filter(Predicate.not(Class::isPrimitive))
+              .filter(Predicate.not(Class::isAnonymousClass))
+              .filter(c -> CLASS_PACKAGE_BLACKLIST.stream()
+                  .noneMatch(s -> c.getName().startsWith(s)))
               .collect(Collectors.toSet())
       );
     }
 
-    return scannedClasses.values().stream()
-        .filter(cl -> cl.getClassName().startsWith("ru.nsu.fit.mcd")).sorted()
-        .collect(Collectors.toList());
+    return scannedClasses.values().stream().sorted().collect(Collectors.toList());
   }
 }
