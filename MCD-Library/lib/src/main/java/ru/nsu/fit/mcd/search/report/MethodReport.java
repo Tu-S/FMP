@@ -51,7 +51,7 @@ public class MethodReport implements Comparable<MethodReport> {
 
   @Override
   public String toString() {
-    return "MethodReport{" +
+    return "\nMethodReport{\n" +
         "methodName='" + methodName + '\'' +
         ", returnType='" + returnType + '\'' +
         ", arguments=" + arguments + '\'' +
