@@ -6,6 +6,7 @@ package ru.nsu.fit.mcd.search;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
@@ -27,7 +28,15 @@ class LibraryTest {
   @Test
   void test() {
     Arrays.stream(LibraryTest.class.getDeclaredFields()).forEach(
-        field -> System.out.println(Arrays.stream(List.of(field.getGenericType()).toArray()).collect(Collectors.toList()))
+        field -> System.out.println(
+            Arrays.stream(List.of(field.getGenericType()).toArray()).collect(Collectors.toList()))
     );
+  }
+
+  @Test
+  void methodTest() throws IOException {
+    ObjectMapper mapper = new ObjectMapper();
+
+    System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(MethodSearchCore.getMethodsReport(TestClass1.class)));
   }
 }
