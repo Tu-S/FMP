@@ -36,7 +36,13 @@ class LibraryTest {
   @Test
   void methodTest() throws IOException {
     ObjectMapper mapper = new ObjectMapper();
-
-    System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(MethodSearchCore.getMethodsReport(TestClass1.class)));
+    var methodReport = MethodSearchCore.getMethodsReport(TestClass1.class);
+    var builder = new StringBuilder();
+    for (var item : methodReport) {
+      builder.append(item.toString());
+    }
+    System.out.println(builder);
+    /*System.out.println(mapper.writerWithDefaultPrettyPrinter()
+        .writeValueAsString(MethodSearchCore.getMethodsReport(TestClass1.class)));*/
   }
 }
