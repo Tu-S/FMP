@@ -19,7 +19,7 @@ import ru.nsu.fit.mcd.search.report.ClassReport;
 import ru.nsu.fit.mcd.search.report.FieldReport;
 import ru.nsu.fit.mcd.utils.Pair;
 
-class SearchCore {
+class ClassSearchCore {
 
   private static final Set<String> CLASS_PACKAGE_BLACKLIST = Set.of(
       "java."
@@ -34,6 +34,8 @@ class SearchCore {
   }
 
   private static Set<Class<?>> getClassesFromGenericType(Type type) {
+    if(type == null)
+      return Set.of();
     Deque<Type> typesToProcess = new LinkedList<>(List.of(type));
     Set<Class<?>> classes = new HashSet<>();
 
@@ -68,7 +70,7 @@ class SearchCore {
 
   private static Pair<ClassReport, Set<Class<?>>> processClass(Class<?> targetClass) {
     var fieldsReport = Arrays.stream(targetClass.getDeclaredFields())
-        .map(SearchCore::getClassesAndReportFromField).collect(Collectors.toList());
+        .map(ClassSearchCore::getClassesAndReportFromField).collect(Collectors.toList());
 
     var parentClasses = getClassesFromParent(targetClass);
     var finalClassSet = Stream.concat(
@@ -77,11 +79,16 @@ class SearchCore {
             .flatMap(Collection::stream),
         parentClasses.stream()
     ).collect(Collectors.toSet());
+    var parentClassName = "";
+    if (!targetClass.isPrimitive() && !targetClass.isArray()) {
+      parentClassName = targetClass.getGenericSuperclass() != null ? targetClass.getGenericSuperclass().getTypeName() : "";
+    }
 
     return Pair.of(
         new ClassReport(
             targetClass.getName(),
-            fieldsReport.stream().map(Pair::getKey).sorted().collect(Collectors.toList())
+            fieldsReport.stream().map(Pair::getKey).sorted().collect(Collectors.toList()),
+            parentClassName
         ),
         finalClassSet
     );

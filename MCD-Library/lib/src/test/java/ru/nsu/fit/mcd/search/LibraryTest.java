@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 import ru.nsu.fit.mcd.TestClass1;
 import ru.nsu.fit.mcd.TestClass2;
+import ru.nsu.fit.mcd.TestClass4;
 
 class LibraryTest {
 
@@ -22,7 +23,7 @@ class LibraryTest {
 
   @Test
   void testClassScan() throws IOException {
-    System.out.println(SearchCore.getClassReport(TestClass1.class));
+    System.out.println(ClassSearchCore.getClassReport(TestClass4.class));
   }
 
   @Test
@@ -37,12 +38,6 @@ class LibraryTest {
   void methodTest() throws IOException {
     ObjectMapper mapper = new ObjectMapper();
     var methodReport = MethodSearchCore.getMethodsReport(TestClass1.class);
-    var builder = new StringBuilder();
-    for (var item : methodReport) {
-      builder.append(item.toString());
-    }
-    System.out.println(builder);
-    /*System.out.println(mapper.writerWithDefaultPrettyPrinter()
-        .writeValueAsString(MethodSearchCore.getMethodsReport(TestClass1.class)));*/
+    System.out.println(methodReport);
   }
 }

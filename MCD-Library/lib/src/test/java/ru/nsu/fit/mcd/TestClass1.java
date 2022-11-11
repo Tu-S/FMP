@@ -16,15 +16,15 @@ public class TestClass1 {
 
     private TestClass2<TestClass2<Integer, Integer>, TestClass2<Double, Double>> genericInsideGenericField;
 
-    public int getIntField(int arg){
+    /*public int getIntField(int arg){
         return arg;
     }
 
     public TestClass1 getTestClass1() {
         return this;
-    }
+    }*/
 
-    public TestClass4 getTestClass4()
+    public TestClass4 getTestClass4(List<Integer> list)
     {
         return new TestClass4();
     }

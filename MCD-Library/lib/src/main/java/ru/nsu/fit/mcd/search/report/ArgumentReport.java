@@ -28,6 +28,6 @@ public class ArgumentReport {
 
   @Override
   public String toString() {
-    return "{" + this.name + " type=" + type.toString() + "}";
+    return "Argument type: " + type;
   }
 }

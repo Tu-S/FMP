@@ -1,5 +1,5 @@
 package ru.nsu.fit.mcd;
 
-public class TestClass5 {
+public class TestClass5<K> {
 
 }

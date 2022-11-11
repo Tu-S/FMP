@@ -1,6 +1,7 @@
 package ru.nsu.fit.mcd.search.report;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MethodReport implements Comparable<MethodReport> {
 
@@ -9,7 +10,10 @@ public class MethodReport implements Comparable<MethodReport> {
   private ArgumentReport returnType;
   private List<ClassReport> classReports;
 
-  public MethodReport(String methodName, List<ArgumentReport> arguments, ArgumentReport returnType,
+  public MethodReport(
+      String methodName,
+      List<ArgumentReport> arguments,
+      ArgumentReport returnType,
       List<ClassReport> classReports) {
     this.methodName = methodName;
     this.arguments = arguments;
@@ -51,11 +55,20 @@ public class MethodReport implements Comparable<MethodReport> {
 
   @Override
   public String toString() {
-    return "\nMethodReport{\n" +
-        "methodName='" + methodName + '\'' +
-        ", returnType='" + returnType + '\'' +
-        ", arguments=" + arguments + '\'' +
-        ", classes=" + classReports + '}';
+    var builder = new StringBuilder();
+    builder.append("[Method " + methodName + "]\n");
+
+    for (var arg : arguments) {
+      builder.append(arg.toString() + "\n");
+    }
+    builder.append("Returned: " + returnType.toString());
+    builder.append("\n");
+    builder.append("Involved classes: {\n");
+    for (var clazz : classReports.stream().distinct().collect(Collectors.toList())) {
+      builder.append(clazz.toString() + "\n");
+    }
+    builder.append("}");
+    return builder.toString();
   }
 
   @Override
