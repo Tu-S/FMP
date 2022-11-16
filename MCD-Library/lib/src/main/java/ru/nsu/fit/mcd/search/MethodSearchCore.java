@@ -16,7 +16,7 @@ public class MethodSearchCore {
     var methodsReports = Arrays.stream(targetClass.getDeclaredMethods())
         .map(MethodSearchCore::processMethod);
 
-    return new ClassMethodsReport(targetClass.getName(), methodsReports.collect(Collectors.toList()));
+    return new ClassMethodsReport(targetClass.getName(), methodsReports.sorted().collect(Collectors.toList()));
   }
 
   private static MethodReport processMethod(Method targetMethod) {
@@ -28,7 +28,7 @@ public class MethodSearchCore {
     targetMethod.getReturnType();
     var returnTypeName = targetMethod.getReturnType().getTypeName();
     var argsReport = Arrays.stream(genericParameterTypes)
-        .map(p -> new ArgumentReport("arg", p.getTypeName())).collect(Collectors.toList());
+        .map(p -> new ArgumentReport("arg", p.getTypeName())).sorted().collect(Collectors.toList());
     var returnedClass = targetMethod.getReturnType();
     var returnedTypeReport = new ArgumentReport("returned", genericReturnType.getTypeName());
 
@@ -36,7 +36,7 @@ public class MethodSearchCore {
     var classes = Stream.concat(Arrays.stream(parameterTypes)
             .map(ClassSearchCore::getClassReport).flatMap(
                 Collection::stream),
-        returnedClassReport.stream()).collect(Collectors.toSet()).stream().toList();
+        returnedClassReport.stream()).collect(Collectors.toSet()).stream().sorted().toList();
 
     return new MethodReport(
         methodName,

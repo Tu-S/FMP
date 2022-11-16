@@ -1,6 +1,8 @@
 package ru.nsu.fit.mcd.search.report;
 
-public class ArgumentReport {
+import java.util.Objects;
+
+public class ArgumentReport implements Comparable<ArgumentReport>{
 
   private String name;
   private String type;
@@ -29,5 +31,25 @@ public class ArgumentReport {
   @Override
   public String toString() {
     return "Argument type: " + type;
+  }
+
+  @Override
+  public int compareTo(ArgumentReport o) {
+    return type.compareTo(o.type);
+  }
+
+  @Override
+  public boolean equals(final Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    ArgumentReport other = (ArgumentReport) obj;
+    return Objects.equals(type, other.type);
   }
 }

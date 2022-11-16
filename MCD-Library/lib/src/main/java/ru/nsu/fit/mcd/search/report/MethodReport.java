@@ -1,6 +1,7 @@
 package ru.nsu.fit.mcd.search.report;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class MethodReport implements Comparable<MethodReport> {
@@ -74,5 +75,20 @@ public class MethodReport implements Comparable<MethodReport> {
   @Override
   public int compareTo(MethodReport o) {
     return methodName.compareTo(o.methodName);
+  }
+
+  @Override
+  public boolean equals(final Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null) {
+      return false;
+    }
+    if (getClass() != obj.getClass()) {
+      return false;
+    }
+    MethodReport other = (MethodReport) obj;
+    return Objects.equals(methodName, other.methodName);
   }
 }
