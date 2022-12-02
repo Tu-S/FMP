@@ -1,0 +1,34 @@
+{
+  "className": "ru.nsu.fit.mcd.TestClass1",
+  "fields": [
+    {
+      "fieldName": "arrayField",
+      "fieldTypeName": "ru.nsu.fit.mcd.TestClass3<java.lang.String[], java.lang.Double>[]"
+    },
+    {
+      "fieldName": "doubleField",
+      "fieldTypeName": "double"
+    },
+    {
+      "fieldName": "genericClassList",
+      "fieldTypeName": "java.util.List<ru.nsu.fit.mcd.TestClass3<java.lang.String[], java.lang.Double>>"
+    },
+    {
+      "fieldName": "genericInsideGenericField",
+      "fieldTypeName": "ru.nsu.fit.mcd.TestClass2<ru.nsu.fit.mcd.TestClass2<java.lang.Integer, java.lang.Integer>, ru.nsu.fit.mcd.TestClass2<java.lang.Double, java.lang.Double>>"
+    },
+    {
+      "fieldName": "intField",
+      "fieldTypeName": "int"
+    },
+    {
+      "fieldName": "list",
+      "fieldTypeName": "java.util.List<java.lang.Integer>"
+    },
+    {
+      "fieldName": "objectField",
+      "fieldTypeName": "java.lang.Object"
+    }
+  ],
+  "parentClassName": "java.lang.Object"
+}

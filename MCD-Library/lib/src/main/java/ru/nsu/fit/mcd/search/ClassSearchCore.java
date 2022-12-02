@@ -15,6 +15,7 @@ import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import ru.nsu.fit.mcd.search.report.AggregatedClassReport;
 import ru.nsu.fit.mcd.search.report.ClassReport;
 import ru.nsu.fit.mcd.search.report.FieldReport;
 import ru.nsu.fit.mcd.utils.Pair;
@@ -116,5 +117,13 @@ class ClassSearchCore {
     }
 
     return scannedClasses.values().stream().sorted().collect(Collectors.toList());
+  }
+
+  public static AggregatedClassReport getAggregatedClassReport(Class<?> targetClass)
+  {
+    var reports = getClassReport(targetClass);
+    ClassReport target = reports.stream().filter(x -> x.getClassName() == targetClass.getName()).findFirst().get();
+    reports.remove(target);
+    return new AggregatedClassReport(target.getClassName(), target.getFields(), target.getParentClassName(), reports);
   }
 }

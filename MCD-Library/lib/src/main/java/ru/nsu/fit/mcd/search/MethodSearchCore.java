@@ -3,7 +3,6 @@ package ru.nsu.fit.mcd.search;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import ru.nsu.fit.mcd.search.report.ArgumentReport;

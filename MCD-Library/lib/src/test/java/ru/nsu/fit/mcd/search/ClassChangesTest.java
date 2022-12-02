@@ -13,12 +13,15 @@ import ru.nsu.fit.mcd.TestClass2;
 public class ClassChangesTest {
 
   @BeforeAll
-  static void writeHash ()
-  {
+  static void writeHash() {
     FileWorker worker = new FileWorker();
     var methodReportClass1 = MethodSearchCore.getMethodsReport(TestClass1.class);
+    int hash = methodReportClass1.toString().hashCode();
+
     assertDoesNotThrow(
-        () -> worker.writeReportHashToFile("methodReportClass1.txt", methodReportClass1));
+        () -> worker.writeToFile(
+            "classMethodsHash/" + methodReportClass1.getClazzName() + "MethodReportHash" + ".txt",
+            String.valueOf(hash)));
   }
 
   @Test
@@ -26,7 +29,8 @@ public class ClassChangesTest {
     FileWorker worker = new FileWorker();
     var methodReportClass1 = MethodSearchCore.getMethodsReport(TestClass1.class);
     var hash = methodReportClass1.toString().hashCode();
-    int readHash = worker.readReportHashCode("methodReportClass1.txt");
+    int readHash = worker.readReportHashCode(
+        "classMethodsHash/" + methodReportClass1.getClazzName() + "MethodReportHash.txt");
     assertEquals(hash, readHash);
   }
 
@@ -35,7 +39,8 @@ public class ClassChangesTest {
     FileWorker worker = new FileWorker();
     var methodReportClass2 = MethodSearchCore.getMethodsReport(TestClass2.class);
     var hash = methodReportClass2.toString().hashCode();
-    int readHash = worker.readReportHashCode("methodReportClass1.txt");
+    int readHash = worker.readReportHashCode(
+        "classMethodsHash/ru.nsu.fit.mcd.TestClass1MethodReportHash.txt");
     assertNotEquals(hash, readHash);
   }
 }

@@ -31,14 +31,17 @@ public class ClassReport implements Comparable<ClassReport> {
     this.fields = fields;
   }
 
+  public String getParentClassName() {
+    return this.parentClass;
+  }
+
   @Override
   public String toString() {
 
     var builder = new StringBuilder();
     builder.append("[Class name: ").append(className).append("]\n").append("Fields:\n");
     builder.append("Parent: ").append(parentClass).append("\n");
-    for (var field : fields)
-    {
+    for (var field : fields) {
       builder.append(field.toString()).append("\n");
     }
     return builder.toString();
