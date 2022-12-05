@@ -23,7 +23,7 @@ public class AggregatedClassReport extends ClassReport {
     for (var clazz : this.usedClasses) {
       builder.append(clazz.toString()).append("\n");
     }
-    builder.append("}");
+    builder.append("}\n");
     return builder.toString();
   }
 }

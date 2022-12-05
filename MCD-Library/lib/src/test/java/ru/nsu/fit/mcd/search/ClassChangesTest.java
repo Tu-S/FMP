@@ -16,7 +16,7 @@ public class ClassChangesTest {
   static void writeHash() {
     FileWorker worker = new FileWorker();
     var methodReportClass1 = MethodSearchCore.getMethodsReport(TestClass1.class);
-    int hash = methodReportClass1.toString().hashCode();
+    int hash = methodReportClass1.hashCode();
 
     assertDoesNotThrow(
         () -> worker.writeToFile(

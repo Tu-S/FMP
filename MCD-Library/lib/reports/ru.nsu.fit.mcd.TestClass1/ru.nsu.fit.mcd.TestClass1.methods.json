@@ -1,1 +1,326 @@
-{"methodReportList":[{"methodName":"getClass3","arguments":[],"returnType":{"name":"returned","type":"ru.nsu.fit.mcd.TestClass3<java.lang.Integer, java.lang.Double>"},"classReports":[{"className":"ru.nsu.fit.mcd.TestClass1","fields":[{"fieldName":"arrayField","fieldTypeName":"ru.nsu.fit.mcd.TestClass3<java.lang.String[], java.lang.Double>[]"},{"fieldName":"doubleField","fieldTypeName":"double"},{"fieldName":"genericClassList","fieldTypeName":"java.util.List<ru.nsu.fit.mcd.TestClass3<java.lang.String[], java.lang.Double>>"},{"fieldName":"genericInsideGenericField","fieldTypeName":"ru.nsu.fit.mcd.TestClass2<ru.nsu.fit.mcd.TestClass2<java.lang.Integer, java.lang.Integer>, ru.nsu.fit.mcd.TestClass2<java.lang.Double, java.lang.Double>>"},{"fieldName":"intField","fieldTypeName":"int"},{"fieldName":"list","fieldTypeName":"java.util.List<java.lang.Integer>"},{"fieldName":"objectField","fieldTypeName":"java.lang.Object"}],"parentClassName":"java.lang.Object"},{"className":"ru.nsu.fit.mcd.TestClass2","fields":[{"fieldName":"aVTypeField","fieldTypeName":"V"},{"fieldName":"bKTypeField","fieldTypeName":"K"},{"fieldName":"cIntFieldInClass2","fieldTypeName":"int"}],"parentClassName":"java.lang.Object"},{"className":"ru.nsu.fit.mcd.TestClass3","fields":[{"fieldName":"testClass3Field","fieldTypeName":"ru.nsu.fit.mcd.TestClass2<K, V>"}],"parentClassName":"ru.nsu.fit.mcd.TestClass4"},{"className":"ru.nsu.fit.mcd.TestClass4","fields":[{"fieldName":"tc1Filed","fieldTypeName":"ru.nsu.fit.mcd.TestClass1"}],"parentClassName":"ru.nsu.fit.mcd.TestClass2<java.util.List<ru.nsu.fit.mcd.TestClass5<java.lang.Object>>, ru.nsu.fit.mcd.TestClass1>"},{"className":"ru.nsu.fit.mcd.TestClass5","fields":[],"parentClassName":"java.lang.Object"}]},{"methodName":"getClass5","arguments":[{"name":"arg","type":"K"}],"returnType":{"name":"returned","type":"ru.nsu.fit.mcd.TestClass5<java.lang.Integer>"},"classReports":[{"className":"java.lang.Object","fields":[],"parentClassName":""},{"className":"ru.nsu.fit.mcd.TestClass5","fields":[],"parentClassName":"java.lang.Object"}]},{"methodName":"getIntField","arguments":[{"name":"arg","type":"int"}],"returnType":{"name":"returned","type":"int"},"classReports":[{"className":"int","fields":[],"parentClassName":""},{"className":"int","fields":[],"parentClassName":""}]},{"methodName":"getTestClass1","arguments":[],"returnType":{"name":"returned","type":"ru.nsu.fit.mcd.TestClass1"},"classReports":[{"className":"ru.nsu.fit.mcd.TestClass1","fields":[{"fieldName":"arrayField","fieldTypeName":"ru.nsu.fit.mcd.TestClass3<java.lang.String[], java.lang.Double>[]"},{"fieldName":"doubleField","fieldTypeName":"double"},{"fieldName":"genericClassList","fieldTypeName":"java.util.List<ru.nsu.fit.mcd.TestClass3<java.lang.String[], java.lang.Double>>"},{"fieldName":"genericInsideGenericField","fieldTypeName":"ru.nsu.fit.mcd.TestClass2<ru.nsu.fit.mcd.TestClass2<java.lang.Integer, java.lang.Integer>, ru.nsu.fit.mcd.TestClass2<java.lang.Double, java.lang.Double>>"},{"fieldName":"intField","fieldTypeName":"int"},{"fieldName":"list","fieldTypeName":"java.util.List<java.lang.Integer>"},{"fieldName":"objectField","fieldTypeName":"java.lang.Object"}],"parentClassName":"java.lang.Object"},{"className":"ru.nsu.fit.mcd.TestClass2","fields":[{"fieldName":"aVTypeField","fieldTypeName":"V"},{"fieldName":"bKTypeField","fieldTypeName":"K"},{"fieldName":"cIntFieldInClass2","fieldTypeName":"int"}],"parentClassName":"java.lang.Object"},{"className":"ru.nsu.fit.mcd.TestClass3","fields":[{"fieldName":"testClass3Field","fieldTypeName":"ru.nsu.fit.mcd.TestClass2<K, V>"}],"parentClassName":"ru.nsu.fit.mcd.TestClass4"},{"className":"ru.nsu.fit.mcd.TestClass4","fields":[{"fieldName":"tc1Filed","fieldTypeName":"ru.nsu.fit.mcd.TestClass1"}],"parentClassName":"ru.nsu.fit.mcd.TestClass2<java.util.List<ru.nsu.fit.mcd.TestClass5<java.lang.Object>>, ru.nsu.fit.mcd.TestClass1>"},{"className":"ru.nsu.fit.mcd.TestClass5","fields":[],"parentClassName":"java.lang.Object"}]},{"methodName":"getTestClass4","arguments":[{"name":"arg","type":"java.util.List<java.lang.Integer>"}],"returnType":{"name":"returned","type":"ru.nsu.fit.mcd.TestClass4"},"classReports":[{"className":"java.util.List","fields":[],"parentClassName":""},{"className":"ru.nsu.fit.mcd.TestClass1","fields":[{"fieldName":"arrayField","fieldTypeName":"ru.nsu.fit.mcd.TestClass3<java.lang.String[], java.lang.Double>[]"},{"fieldName":"doubleField","fieldTypeName":"double"},{"fieldName":"genericClassList","fieldTypeName":"java.util.List<ru.nsu.fit.mcd.TestClass3<java.lang.String[], java.lang.Double>>"},{"fieldName":"genericInsideGenericField","fieldTypeName":"ru.nsu.fit.mcd.TestClass2<ru.nsu.fit.mcd.TestClass2<java.lang.Integer, java.lang.Integer>, ru.nsu.fit.mcd.TestClass2<java.lang.Double, java.lang.Double>>"},{"fieldName":"intField","fieldTypeName":"int"},{"fieldName":"list","fieldTypeName":"java.util.List<java.lang.Integer>"},{"fieldName":"objectField","fieldTypeName":"java.lang.Object"}],"parentClassName":"java.lang.Object"},{"className":"ru.nsu.fit.mcd.TestClass2","fields":[{"fieldName":"aVTypeField","fieldTypeName":"V"},{"fieldName":"bKTypeField","fieldTypeName":"K"},{"fieldName":"cIntFieldInClass2","fieldTypeName":"int"}],"parentClassName":"java.lang.Object"},{"className":"ru.nsu.fit.mcd.TestClass3","fields":[{"fieldName":"testClass3Field","fieldTypeName":"ru.nsu.fit.mcd.TestClass2<K, V>"}],"parentClassName":"ru.nsu.fit.mcd.TestClass4"},{"className":"ru.nsu.fit.mcd.TestClass4","fields":[{"fieldName":"tc1Filed","fieldTypeName":"ru.nsu.fit.mcd.TestClass1"}],"parentClassName":"ru.nsu.fit.mcd.TestClass2<java.util.List<ru.nsu.fit.mcd.TestClass5<java.lang.Object>>, ru.nsu.fit.mcd.TestClass1>"},{"className":"ru.nsu.fit.mcd.TestClass5","fields":[],"parentClassName":"java.lang.Object"}]}],"clazzName":"ru.nsu.fit.mcd.TestClass1"}
+{
+  "methodReportList": [
+    {
+      "methodName": "getClass3",
+      "arguments": [],
+      "returnType": {
+        "name": "returned",
+        "type": "ru.nsu.fit.mcd.TestClass3<java.lang.Integer, java.lang.Double>"
+      },
+      "classReports": [
+        {
+          "className": "ru.nsu.fit.mcd.TestClass1",
+          "fields": [
+            {
+              "fieldName": "arrayField",
+              "fieldTypeName": "ru.nsu.fit.mcd.TestClass3<java.lang.String[], java.lang.Double>[]"
+            },
+            {
+              "fieldName": "doubleField",
+              "fieldTypeName": "double"
+            },
+            {
+              "fieldName": "genericClassList",
+              "fieldTypeName": "java.util.List<ru.nsu.fit.mcd.TestClass3<java.lang.String[], java.lang.Double>>"
+            },
+            {
+              "fieldName": "genericInsideGenericField",
+              "fieldTypeName": "ru.nsu.fit.mcd.TestClass2<ru.nsu.fit.mcd.TestClass2<java.lang.Integer, java.lang.Integer>, ru.nsu.fit.mcd.TestClass2<java.lang.Double, java.lang.Double>>"
+            },
+            {
+              "fieldName": "intField",
+              "fieldTypeName": "int"
+            },
+            {
+              "fieldName": "list",
+              "fieldTypeName": "java.util.List<java.lang.Integer>"
+            },
+            {
+              "fieldName": "objectField",
+              "fieldTypeName": "java.lang.Object"
+            }
+          ],
+          "parentClassName": "java.lang.Object"
+        },
+        {
+          "className": "ru.nsu.fit.mcd.TestClass2",
+          "fields": [
+            {
+              "fieldName": "aVTypeField",
+              "fieldTypeName": "V"
+            },
+            {
+              "fieldName": "bKTypeField",
+              "fieldTypeName": "K"
+            },
+            {
+              "fieldName": "cIntFieldInClass2",
+              "fieldTypeName": "int"
+            }
+          ],
+          "parentClassName": "java.lang.Object"
+        },
+        {
+          "className": "ru.nsu.fit.mcd.TestClass3",
+          "fields": [
+            {
+              "fieldName": "testClass3Field",
+              "fieldTypeName": "ru.nsu.fit.mcd.TestClass2<K, V>"
+            }
+          ],
+          "parentClassName": "ru.nsu.fit.mcd.TestClass4"
+        },
+        {
+          "className": "ru.nsu.fit.mcd.TestClass4",
+          "fields": [
+            {
+              "fieldName": "tc1Filed",
+              "fieldTypeName": "ru.nsu.fit.mcd.TestClass1"
+            }
+          ],
+          "parentClassName": "ru.nsu.fit.mcd.TestClass2<java.util.List<ru.nsu.fit.mcd.TestClass5<java.lang.Object>>, ru.nsu.fit.mcd.TestClass1>"
+        },
+        {
+          "className": "ru.nsu.fit.mcd.TestClass5",
+          "fields": [],
+          "parentClassName": "java.lang.Object"
+        }
+      ]
+    },
+    {
+      "methodName": "getClass5",
+      "arguments": [
+        {
+          "name": "arg",
+          "type": "K"
+        }
+      ],
+      "returnType": {
+        "name": "returned",
+        "type": "ru.nsu.fit.mcd.TestClass5<java.lang.Integer>"
+      },
+      "classReports": [
+        {
+          "className": "java.lang.Object",
+          "fields": [],
+          "parentClassName": ""
+        },
+        {
+          "className": "ru.nsu.fit.mcd.TestClass5",
+          "fields": [],
+          "parentClassName": "java.lang.Object"
+        }
+      ]
+    },
+    {
+      "methodName": "getIntField",
+      "arguments": [
+        {
+          "name": "arg",
+          "type": "int"
+        }
+      ],
+      "returnType": {
+        "name": "returned",
+        "type": "int"
+      },
+      "classReports": [
+        {
+          "className": "int",
+          "fields": [],
+          "parentClassName": ""
+        },
+        {
+          "className": "int",
+          "fields": [],
+          "parentClassName": ""
+        }
+      ]
+    },
+    {
+      "methodName": "getTestClass1",
+      "arguments": [],
+      "returnType": {
+        "name": "returned",
+        "type": "ru.nsu.fit.mcd.TestClass1"
+      },
+      "classReports": [
+        {
+          "className": "ru.nsu.fit.mcd.TestClass1",
+          "fields": [
+            {
+              "fieldName": "arrayField",
+              "fieldTypeName": "ru.nsu.fit.mcd.TestClass3<java.lang.String[], java.lang.Double>[]"
+            },
+            {
+              "fieldName": "doubleField",
+              "fieldTypeName": "double"
+            },
+            {
+              "fieldName": "genericClassList",
+              "fieldTypeName": "java.util.List<ru.nsu.fit.mcd.TestClass3<java.lang.String[], java.lang.Double>>"
+            },
+            {
+              "fieldName": "genericInsideGenericField",
+              "fieldTypeName": "ru.nsu.fit.mcd.TestClass2<ru.nsu.fit.mcd.TestClass2<java.lang.Integer, java.lang.Integer>, ru.nsu.fit.mcd.TestClass2<java.lang.Double, java.lang.Double>>"
+            },
+            {
+              "fieldName": "intField",
+              "fieldTypeName": "int"
+            },
+            {
+              "fieldName": "list",
+              "fieldTypeName": "java.util.List<java.lang.Integer>"
+            },
+            {
+              "fieldName": "objectField",
+              "fieldTypeName": "java.lang.Object"
+            }
+          ],
+          "parentClassName": "java.lang.Object"
+        },
+        {
+          "className": "ru.nsu.fit.mcd.TestClass2",
+          "fields": [
+            {
+              "fieldName": "aVTypeField",
+              "fieldTypeName": "V"
+            },
+            {
+              "fieldName": "bKTypeField",
+              "fieldTypeName": "K"
+            },
+            {
+              "fieldName": "cIntFieldInClass2",
+              "fieldTypeName": "int"
+            }
+          ],
+          "parentClassName": "java.lang.Object"
+        },
+        {
+          "className": "ru.nsu.fit.mcd.TestClass3",
+          "fields": [
+            {
+              "fieldName": "testClass3Field",
+              "fieldTypeName": "ru.nsu.fit.mcd.TestClass2<K, V>"
+            }
+          ],
+          "parentClassName": "ru.nsu.fit.mcd.TestClass4"
+        },
+        {
+          "className": "ru.nsu.fit.mcd.TestClass4",
+          "fields": [
+            {
+              "fieldName": "tc1Filed",
+              "fieldTypeName": "ru.nsu.fit.mcd.TestClass1"
+            }
+          ],
+          "parentClassName": "ru.nsu.fit.mcd.TestClass2<java.util.List<ru.nsu.fit.mcd.TestClass5<java.lang.Object>>, ru.nsu.fit.mcd.TestClass1>"
+        },
+        {
+          "className": "ru.nsu.fit.mcd.TestClass5",
+          "fields": [],
+          "parentClassName": "java.lang.Object"
+        }
+      ]
+    },
+    {
+      "methodName": "getTestClass4",
+      "arguments": [
+        {
+          "name": "arg",
+          "type": "java.util.List<java.lang.Integer>"
+        }
+      ],
+      "returnType": {
+        "name": "returned",
+        "type": "ru.nsu.fit.mcd.TestClass4"
+      },
+      "classReports": [
+        {
+          "className": "java.util.List",
+          "fields": [],
+          "parentClassName": ""
+        },
+        {
+          "className": "ru.nsu.fit.mcd.TestClass1",
+          "fields": [
+            {
+              "fieldName": "arrayField",
+              "fieldTypeName": "ru.nsu.fit.mcd.TestClass3<java.lang.String[], java.lang.Double>[]"
+            },
+            {
+              "fieldName": "doubleField",
+              "fieldTypeName": "double"
+            },
+            {
+              "fieldName": "genericClassList",
+              "fieldTypeName": "java.util.List<ru.nsu.fit.mcd.TestClass3<java.lang.String[], java.lang.Double>>"
+            },
+            {
+              "fieldName": "genericInsideGenericField",
+              "fieldTypeName": "ru.nsu.fit.mcd.TestClass2<ru.nsu.fit.mcd.TestClass2<java.lang.Integer, java.lang.Integer>, ru.nsu.fit.mcd.TestClass2<java.lang.Double, java.lang.Double>>"
+            },
+            {
+              "fieldName": "intField",
+              "fieldTypeName": "int"
+            },
+            {
+              "fieldName": "list",
+              "fieldTypeName": "java.util.List<java.lang.Integer>"
+            },
+            {
+              "fieldName": "objectField",
+              "fieldTypeName": "java.lang.Object"
+            }
+          ],
+          "parentClassName": "java.lang.Object"
+        },
+        {
+          "className": "ru.nsu.fit.mcd.TestClass2",
+          "fields": [
+            {
+              "fieldName": "aVTypeField",
+              "fieldTypeName": "V"
+            },
+            {
+              "fieldName": "bKTypeField",
+              "fieldTypeName": "K"
+            },
+            {
+              "fieldName": "cIntFieldInClass2",
+              "fieldTypeName": "int"
+            }
+          ],
+          "parentClassName": "java.lang.Object"
+        },
+        {
+          "className": "ru.nsu.fit.mcd.TestClass3",
+          "fields": [
+            {
+              "fieldName": "testClass3Field",
+              "fieldTypeName": "ru.nsu.fit.mcd.TestClass2<K, V>"
+            }
+          ],
+          "parentClassName": "ru.nsu.fit.mcd.TestClass4"
+        },
+        {
+          "className": "ru.nsu.fit.mcd.TestClass4",
+          "fields": [
+            {
+              "fieldName": "tc1Filed",
+              "fieldTypeName": "ru.nsu.fit.mcd.TestClass1"
+            }
+          ],
+          "parentClassName": "ru.nsu.fit.mcd.TestClass2<java.util.List<ru.nsu.fit.mcd.TestClass5<java.lang.Object>>, ru.nsu.fit.mcd.TestClass1>"
+        },
+        {
+          "className": "ru.nsu.fit.mcd.TestClass5",
+          "fields": [],
+          "parentClassName": "java.lang.Object"
+        }
+      ]
+    }
+  ],
+  "clazzName": "ru.nsu.fit.mcd.TestClass1"
+}

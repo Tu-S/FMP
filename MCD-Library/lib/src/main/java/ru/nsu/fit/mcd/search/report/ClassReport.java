@@ -39,7 +39,7 @@ public class ClassReport implements Comparable<ClassReport> {
   public String toString() {
 
     var builder = new StringBuilder();
-    builder.append("[Class name: ").append(className).append("]\n").append("Fields:\n");
+    builder.append("[Class name: ").append(className).append("]\n");
     builder.append("Parent: ").append(parentClass).append("\n");
     for (var field : fields) {
       builder.append(field.toString()).append("\n");

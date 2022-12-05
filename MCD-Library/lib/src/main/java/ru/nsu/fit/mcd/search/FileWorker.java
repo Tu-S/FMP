@@ -18,6 +18,17 @@ public class FileWorker {
     return hash;
   }
 
+  public String readFromFile(String fileName) throws IOException {
+    var builder = new StringBuilder();
+    try (FileReader reader = new FileReader(fileName)) {
+      Scanner scan = new Scanner(reader);
+      while (scan.hasNext()) {
+        builder.append(scan.nextLine()+"\n");
+      }
+    }
+    return builder.toString();
+  }
+
   public void writeToFile(String fileName, String content) throws IOException {
     try (FileWriter writer = new FileWriter(fileName, false)) {
       writer.write(content);
