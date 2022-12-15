@@ -1,5 +1,6 @@
 package ru.nsu.fit.mcd.search.report;
 
+import java.lang.annotation.Annotation;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -10,16 +11,19 @@ public class MethodReport implements Comparable<MethodReport> {
   private List<ArgumentReport> arguments;
   private ArgumentReport returnType;
   private List<ClassReport> classReports;
+  private Annotation[] annotations;
 
   public MethodReport(
       String methodName,
       List<ArgumentReport> arguments,
       ArgumentReport returnType,
-      List<ClassReport> classReports) {
+      List<ClassReport> classReports,
+      Annotation[] annotations) {
     this.methodName = methodName;
     this.arguments = arguments;
     this.returnType = returnType;
     this.classReports = classReports;
+    this.annotations = annotations;
   }
 
   public String getMethodName() {
@@ -58,7 +62,9 @@ public class MethodReport implements Comparable<MethodReport> {
   public String toString() {
     var builder = new StringBuilder();
     builder.append("[Method " + methodName + "]\n");
-
+    for (var a : this.annotations) {
+      builder.append("Annotation: " + a.toString() + "\n");
+    }
     for (var arg : arguments) {
       builder.append(arg.toString() + "\n");
     }

@@ -70,4 +70,61 @@ public class E2eTest {
     var html = DiffUtils.GetHtml(diffs);
     fileWorker.writeToFile("src/test/ClassReportChangedTest.html", html);
   }
+
+  @Test
+  public void ClassMethodsReportEqualTest() throws IOException {
+    var classReportsReportClass1 = MethodSearchCore.getMethodsReport(TestClass1.class);
+    ReportSaver saver = new ReportSaver();
+    FileWorker fileWorker = new FileWorker();
+    assertDoesNotThrow(() -> saver.saveClassMethodsReport(classReportsReportClass1));
+    var savedHash = fileWorker.readReportHashCode(
+        "reports/ru.nsu.fit.mcd.TestClass1/ru.nsu.fit.mcd.TestClass1.methods.hash.txt");
+    var hash = classReportsReportClass1.hashCode();
+    assertEquals(hash, savedHash);
+    var savedString = fileWorker.readFromFile(
+        "reports/ru.nsu.fit.mcd.TestClass1/ru.nsu.fit.mcd.TestClass1.methods.txt");
+    var stringRep = classReportsReportClass1.toString();
+    var diffs = DiffUtils.getDiffs(savedString, stringRep);
+    assertEquals(1, diffs.size());
+    assertEquals(diffs.get(0).operation.toString(), "EQUAL");
+    var html = DiffUtils.GetHtml(diffs);
+    fileWorker.writeToFile("src/test/ClassMethodsReportEqualTest.html", html);
+  }
+
+  @Test
+  public void ClassMethodsReportNotEqualTest() throws IOException {
+    var classReportsReportClass1 = MethodSearchCore.getMethodsReport(TestClass1.class);
+    var classReportsReportClass2 = MethodSearchCore.getMethodsReport(TestClass2.class);
+    ReportSaver saver = new ReportSaver();
+    FileWorker fileWorker = new FileWorker();
+    assertDoesNotThrow(() -> saver.saveClassMethodsReport(classReportsReportClass1));
+    var savedHash = fileWorker.readReportHashCode(
+        "reports/ru.nsu.fit.mcd.TestClass1/ru.nsu.fit.mcd.TestClass1.methods.hash.txt");
+    var hash = classReportsReportClass2.hashCode();
+    assertNotEquals(hash, savedHash);
+    var savedString = fileWorker.readFromFile(
+        "reports/ru.nsu.fit.mcd.TestClass1/ru.nsu.fit.mcd.TestClass1.methods.txt");
+    var stringRep = classReportsReportClass2.toString();
+    var diffs = DiffUtils.getDiffs(savedString, stringRep);
+    assertNotEquals(1, diffs.size());
+    var html = DiffUtils.GetHtml(diffs);
+    fileWorker.writeToFile("src/test/ClassMethodsReportNotEqualTest.html", html);
+  }
+
+  @Test
+  public void ClassMethodsReportChangedTest() throws IOException {
+    var classReportsReportClass2 = MethodSearchCore.getMethodsReport(TestClass2.class);
+    FileWorker fileWorker = new FileWorker();
+    var hash = classReportsReportClass2.hashCode();
+    var savedHash = fileWorker.readReportHashCode(
+        "reports/ru.nsu.fit.mcd.TestClass1/ru.nsu.fit.mcd.TestClass1.methods.hash.txt");
+    assertNotEquals(hash, savedHash);
+    var savedString = fileWorker.readFromFile(
+        "reports/ru.nsu.fit.mcd.TestClass1/ru.nsu.fit.mcd.TestClass1.methods.txt");
+    var stringRep = classReportsReportClass2.toString();
+    var diffs = DiffUtils.getDiffs(savedString, stringRep);
+    assertNotEquals(1, diffs.size());
+    var html = DiffUtils.GetHtml(diffs);
+    fileWorker.writeToFile("src/test/ClassMethodsReportChangedTest.html", html);
+  }
 }

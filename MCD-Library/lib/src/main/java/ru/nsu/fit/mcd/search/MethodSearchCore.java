@@ -20,12 +20,11 @@ public class MethodSearchCore {
 
   private static MethodReport processMethod(Method targetMethod) {
     String methodName = targetMethod.getName();
-
+    var annotations = targetMethod.getAnnotations();
     var parameterTypes = targetMethod.getParameterTypes();
     var genericParameterTypes = targetMethod.getGenericParameterTypes();
     var genericReturnType = targetMethod.getGenericReturnType();
     targetMethod.getReturnType();
-    var returnTypeName = targetMethod.getReturnType().getTypeName();
     var argsReport = Arrays.stream(genericParameterTypes)
         .map(p -> new ArgumentReport("arg", p.getTypeName())).sorted().collect(Collectors.toList());
     var returnedClass = targetMethod.getReturnType();
@@ -41,7 +40,8 @@ public class MethodSearchCore {
         methodName,
         argsReport,
         returnedTypeReport,
-        classes
+        classes,
+        annotations
     );
   }
 }

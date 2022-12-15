@@ -3,7 +3,6 @@
 Returned: Argument type: ru.nsu.fit.mcd.TestClass3<java.lang.Integer, java.lang.Double>
 Involved classes: {
 [Class name: ru.nsu.fit.mcd.TestClass1]
-Fields:
 Parent: java.lang.Object
 Field arrayField type: ru.nsu.fit.mcd.TestClass3<java.lang.String[], java.lang.Double>[]
 Field doubleField type: double
@@ -14,24 +13,20 @@ Field list type: java.util.List<java.lang.Integer>
 Field objectField type: java.lang.Object
 
 [Class name: ru.nsu.fit.mcd.TestClass2]
-Fields:
 Parent: java.lang.Object
 Field aVTypeField type: V
 Field bKTypeField type: K
 Field cIntFieldInClass2 type: int
 
 [Class name: ru.nsu.fit.mcd.TestClass3]
-Fields:
 Parent: ru.nsu.fit.mcd.TestClass4
 Field testClass3Field type: ru.nsu.fit.mcd.TestClass2<K, V>
 
 [Class name: ru.nsu.fit.mcd.TestClass4]
-Fields:
 Parent: ru.nsu.fit.mcd.TestClass2<java.util.List<ru.nsu.fit.mcd.TestClass5<java.lang.Object>>, ru.nsu.fit.mcd.TestClass1>
 Field tc1Filed type: ru.nsu.fit.mcd.TestClass1
 
 [Class name: ru.nsu.fit.mcd.TestClass5]
-Fields:
 Parent: java.lang.Object
 
 }
@@ -40,11 +35,9 @@ Argument type: K
 Returned: Argument type: ru.nsu.fit.mcd.TestClass5<java.lang.Integer>
 Involved classes: {
 [Class name: java.lang.Object]
-Fields:
 Parent: 
 
 [Class name: ru.nsu.fit.mcd.TestClass5]
-Fields:
 Parent: java.lang.Object
 
 }
@@ -53,11 +46,9 @@ Argument type: int
 Returned: Argument type: int
 Involved classes: {
 [Class name: int]
-Fields:
 Parent: 
 
 [Class name: int]
-Fields:
 Parent: 
 
 }
@@ -65,7 +56,6 @@ Parent:
 Returned: Argument type: ru.nsu.fit.mcd.TestClass1
 Involved classes: {
 [Class name: ru.nsu.fit.mcd.TestClass1]
-Fields:
 Parent: java.lang.Object
 Field arrayField type: ru.nsu.fit.mcd.TestClass3<java.lang.String[], java.lang.Double>[]
 Field doubleField type: double
@@ -76,24 +66,20 @@ Field list type: java.util.List<java.lang.Integer>
 Field objectField type: java.lang.Object
 
 [Class name: ru.nsu.fit.mcd.TestClass2]
-Fields:
 Parent: java.lang.Object
 Field aVTypeField type: V
 Field bKTypeField type: K
 Field cIntFieldInClass2 type: int
 
 [Class name: ru.nsu.fit.mcd.TestClass3]
-Fields:
 Parent: ru.nsu.fit.mcd.TestClass4
 Field testClass3Field type: ru.nsu.fit.mcd.TestClass2<K, V>
 
 [Class name: ru.nsu.fit.mcd.TestClass4]
-Fields:
 Parent: ru.nsu.fit.mcd.TestClass2<java.util.List<ru.nsu.fit.mcd.TestClass5<java.lang.Object>>, ru.nsu.fit.mcd.TestClass1>
 Field tc1Filed type: ru.nsu.fit.mcd.TestClass1
 
 [Class name: ru.nsu.fit.mcd.TestClass5]
-Fields:
 Parent: java.lang.Object
 
 }
@@ -102,11 +88,9 @@ Argument type: java.util.List<java.lang.Integer>
 Returned: Argument type: ru.nsu.fit.mcd.TestClass4
 Involved classes: {
 [Class name: java.util.List]
-Fields:
 Parent: 
 
 [Class name: ru.nsu.fit.mcd.TestClass1]
-Fields:
 Parent: java.lang.Object
 Field arrayField type: ru.nsu.fit.mcd.TestClass3<java.lang.String[], java.lang.Double>[]
 Field doubleField type: double
@@ -117,24 +101,20 @@ Field list type: java.util.List<java.lang.Integer>
 Field objectField type: java.lang.Object
 
 [Class name: ru.nsu.fit.mcd.TestClass2]
-Fields:
 Parent: java.lang.Object
 Field aVTypeField type: V
 Field bKTypeField type: K
 Field cIntFieldInClass2 type: int
 
 [Class name: ru.nsu.fit.mcd.TestClass3]
-Fields:
 Parent: ru.nsu.fit.mcd.TestClass4
 Field testClass3Field type: ru.nsu.fit.mcd.TestClass2<K, V>
 
 [Class name: ru.nsu.fit.mcd.TestClass4]
-Fields:
 Parent: ru.nsu.fit.mcd.TestClass2<java.util.List<ru.nsu.fit.mcd.TestClass5<java.lang.Object>>, ru.nsu.fit.mcd.TestClass1>
 Field tc1Filed type: ru.nsu.fit.mcd.TestClass1
 
 [Class name: ru.nsu.fit.mcd.TestClass5]
-Fields:
 Parent: java.lang.Object
 
 }
