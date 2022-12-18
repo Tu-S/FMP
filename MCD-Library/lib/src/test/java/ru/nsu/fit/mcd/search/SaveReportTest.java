@@ -10,9 +10,9 @@ import ru.nsu.fit.mcd.utils.DiffUtils;
 import ru.nsu.fit.mcd.utils.ReportSaver;
 
 public class SaveReportTest {
+
   @Test
-  public void SaveClassMethodReport()
-  {
+  public void SaveClassMethodReport() {
     var methodReportClass1 = MethodSearchCore.getMethodsReport(TestClass1.class);
 
     ReportSaver saver = new ReportSaver();
@@ -21,8 +21,7 @@ public class SaveReportTest {
   }
 
   @Test
-  public void SaveClass1Report()
-  {
+  public void SaveClass1Report() {
     var classReportsReportClass1 = ClassSearchCore.getAggregatedClassReport(TestClass1.class);
     ReportSaver saver = new ReportSaver();
     assertDoesNotThrow(
@@ -33,16 +32,18 @@ public class SaveReportTest {
   public void SaveClass1WithDiff() throws IOException {
     var classReportsReportClass1 = ClassSearchCore.getAggregatedClassReport(TestClass1.class);
     var classReportsReportClass2 = ClassSearchCore.getAggregatedClassReport(TestClass2.class);
-    var html = DiffUtils.getClassReportsDiffsHtml(classReportsReportClass1, classReportsReportClass2);
+    var html = DiffUtils.getClassReportsDiffsHtml(classReportsReportClass1,
+        classReportsReportClass2);
     ReportSaver saver = new ReportSaver();
-    assertDoesNotThrow(() -> saver.saveDiffsHtml(classReportsReportClass1.getClassName(),html));
+    assertDoesNotThrow(() -> saver.saveDiffsHtml(classReportsReportClass1.getClassName(), html));
   }
 
   @Test
   public void SaveClass1WithoutDiff() throws IOException {
     var classReportsReportClass1 = ClassSearchCore.getAggregatedClassReport(TestClass1.class);
-    var html = DiffUtils.getClassReportsDiffsHtml(classReportsReportClass1, classReportsReportClass1);
+    var html = DiffUtils.getClassReportsDiffsHtml(classReportsReportClass1,
+        classReportsReportClass1);
     ReportSaver saver = new ReportSaver();
-    assertDoesNotThrow(() -> saver.saveDiffsHtml(classReportsReportClass1.getClassName(),html));
+    assertDoesNotThrow(() -> saver.saveDiffsHtml(classReportsReportClass1.getClassName(), html));
   }
 }

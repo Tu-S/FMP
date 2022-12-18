@@ -23,7 +23,7 @@ public class FileWorker {
     try (FileReader reader = new FileReader(fileName)) {
       Scanner scan = new Scanner(reader);
       while (scan.hasNext()) {
-        builder.append(scan.nextLine()+"\n");
+        builder.append(scan.nextLine() + "\n");
       }
     }
     return builder.toString();

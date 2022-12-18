@@ -15,7 +15,8 @@ public class MethodSearchCore {
     var methodsReports = Arrays.stream(targetClass.getDeclaredMethods())
         .map(MethodSearchCore::processMethod);
 
-    return new ClassMethodsReport(targetClass.getName(), methodsReports.sorted().collect(Collectors.toList()));
+    return new ClassMethodsReport(targetClass.getName(),
+        methodsReports.sorted().collect(Collectors.toList()));
   }
 
   private static MethodReport processMethod(Method targetMethod) {

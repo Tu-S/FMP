@@ -13,7 +13,7 @@ public class WriterTest {
   void write() throws IOException {
     FileWorker worker = new FileWorker();
     var methodReportClass1 = MethodSearchCore.getMethodsReport(TestClass1.class);
-    var hash = (long)methodReportClass1.toString().hashCode();
+    var hash = (long) methodReportClass1.toString().hashCode();
     assertDoesNotThrow(
         () -> worker.writeToFile("src/test/methodReportClass1.txt", String.valueOf(hash)));
   }

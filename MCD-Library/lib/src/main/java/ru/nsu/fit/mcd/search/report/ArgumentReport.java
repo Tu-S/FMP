@@ -2,7 +2,7 @@ package ru.nsu.fit.mcd.search.report;
 
 import java.util.Objects;
 
-public class ArgumentReport implements Comparable<ArgumentReport>{
+public class ArgumentReport implements Comparable<ArgumentReport> {
 
   private String name;
   private String type;

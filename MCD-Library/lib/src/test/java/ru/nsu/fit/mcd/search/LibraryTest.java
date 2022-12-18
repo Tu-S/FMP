@@ -49,8 +49,7 @@ class LibraryTest {
   void methodHashEqualTest() throws IOException {
     ObjectMapper mapper = new ObjectMapper();
     var methodReport = MethodSearchCore.getMethodsReport(TestClass1.class);
-    for(int i = 0; i< 10000; i++)
-    {
+    for (int i = 0; i < 10000; i++) {
       var hash1 = methodReport.toString().hashCode();
       var hash2 = methodReport.toString().hashCode();
       assertEquals(hash1, hash2);

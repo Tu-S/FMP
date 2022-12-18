@@ -8,8 +8,7 @@ public class ClassMethodsReport {
 
   private String clazzName;
 
-  public ClassMethodsReport(String name, List<MethodReport> methodReports)
-  {
+  public ClassMethodsReport(String name, List<MethodReport> methodReports) {
     this.clazzName = name;
     this.methodReportList = methodReports;
   }
@@ -28,8 +27,7 @@ public class ClassMethodsReport {
     var builder = new StringBuilder();
     builder.append("[Class name: ").append(clazzName).append("]\n");
 
-    for (var method : methodReportList)
-    {
+    for (var method : methodReportList) {
       builder.append(method.toString()).append("\n");
     }
     return builder.toString();

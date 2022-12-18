@@ -35,8 +35,9 @@ class ClassSearchCore {
   }
 
   private static Set<Class<?>> getClassesFromGenericType(Type type) {
-    if(type == null)
+    if (type == null) {
       return Set.of();
+    }
     Deque<Type> typesToProcess = new LinkedList<>(List.of(type));
     Set<Class<?>> classes = new HashSet<>();
 
@@ -82,7 +83,9 @@ class ClassSearchCore {
     ).collect(Collectors.toSet());
     var parentClassName = "";
     if (!targetClass.isPrimitive() && !targetClass.isArray()) {
-      parentClassName = targetClass.getGenericSuperclass() != null ? targetClass.getGenericSuperclass().getTypeName() : "";
+      parentClassName =
+          targetClass.getGenericSuperclass() != null ? targetClass.getGenericSuperclass()
+              .getTypeName() : "";
     }
 
     return Pair.of(
@@ -119,11 +122,12 @@ class ClassSearchCore {
     return scannedClasses.values().stream().sorted().collect(Collectors.toList());
   }
 
-  public static AggregatedClassReport getAggregatedClassReport(Class<?> targetClass)
-  {
+  public static AggregatedClassReport getAggregatedClassReport(Class<?> targetClass) {
     var reports = getClassReport(targetClass);
-    ClassReport target = reports.stream().filter(x -> x.getClassName() == targetClass.getName()).findFirst().get();
+    ClassReport target = reports.stream().filter(x -> x.getClassName() == targetClass.getName())
+        .findFirst().get();
     reports.remove(target);
-    return new AggregatedClassReport(target.getClassName(), target.getFields(), target.getParentClassName(), reports);
+    return new AggregatedClassReport(target.getClassName(), target.getFields(),
+        target.getParentClassName(), reports);
   }
 }
